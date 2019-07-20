@@ -1,0 +1,11 @@
+.section-content {
+  border-bottom: 1px solid $gray;
+  width: 100%;
+  padding: 10px 0;
+
+  input[type=text] {
+    &.active {
+      background-color: $dark-blue;
+    }
+  }
+}

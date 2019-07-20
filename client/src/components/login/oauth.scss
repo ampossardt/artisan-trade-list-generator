@@ -1,0 +1,33 @@
+.login-button {
+  padding: 12px 12px 12px 50px;
+  background-color: #6e5494;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  opacity: 1;
+  transition: opacity .3s;
+
+  &:visited, &:active {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  &::before {
+    content:'';
+    background-image: url('/img/github-icon.png');
+    background-size: cover;
+    display: block;
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 7px;
+    left: 15px;
+  }
+
+  &.hide {
+    opacity: 0;
+  }
+}

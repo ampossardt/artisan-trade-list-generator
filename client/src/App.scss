@@ -1,0 +1,120 @@
+@import './assets/variables';
+@import './components/login/oauth.scss';
+@import './assets/grid';
+@import './components//instructions/instructions.scss';
+@import './components/builder/builder.scss';
+@import './components/builder/section/section.scss';
+@import './components/builder/subsection/subsection.scss';
+@import './components/builder/item/item.scss';
+
+body {
+  background-color: $blue;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+header {
+  background-color: $dark-blue;
+  border-bottom: 1px solid $off-white;
+  padding: 15px;
+  color: $off-white;
+  display: flex;
+  align-items: center;
+
+  h3 {
+    flex-grow: 1;
+  }
+}
+
+h1.label {
+  display: inline-block;
+  padding: 3px;
+  background-color: $off-white;
+  color: $darker-blue;
+}
+
+h3 {
+  margin: 0;
+}
+
+section {
+  margin-bottom: 15px;
+}
+
+input {
+  padding: 10px;
+  outline: none;
+  border-radius: 4px;
+  display: inline-block;
+  border: none;
+  background-color: transparent;
+  font-size: 1.1em;
+  transition: background-color .2s;
+  caret-color: $gray;
+  color: $off-white;
+
+  &:focus {
+    background-color: $dark-blue;
+  }
+}
+
+.control-container {
+  display: flex;
+
+  input[type=text] {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .icon {
+    flex-basis: 32px;
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    background-color: $off-white;
+    border-radius: 4px 0 0 4px;
+    transition: .3s background-color, .3s color;
+
+    .fa {
+      font-size: 1.4em;
+      margin-top: -2px;
+    }
+
+    &.active {
+      background-color: $blue;
+      color: $off-white;
+    }
+  }
+}
+
+.add {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  margin: 5px 0;
+  cursor: pointer;
+  color: $off-white;
+
+  &::before {
+    font-family: FontAwesome;
+    content: '\f067';
+    margin-right: 8px;
+  }
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $dark-gray;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: $dark-gray;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: $dark-gray;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: $dark-gray;
+}
