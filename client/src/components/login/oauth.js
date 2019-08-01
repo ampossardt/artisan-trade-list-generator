@@ -1,16 +1,14 @@
 import React from 'react'
-import { getToken } from '../../tools/request-token';
+import { getToken, getUserInfo } from '../../tools/request-token';
+import { withLoggedIn } from '../helper/conditional-display';
+import SignInTools from '../../tools/sign-in-tools';
 
 class SignInOAuth extends React.Component {
   
   constructor(props) {
     super(props);
 
-    this.state = {
-      showButton: true
-    };
-
-    this.buildUrl = this.buildUrl.bind(this);
+    this.state = {};
   }
 
   componentDidMount() {
@@ -18,28 +16,94 @@ class SignInOAuth extends React.Component {
     const code = window.location.href.match(pattern) &&
       window.location.href.match(pattern)[1];
 
-    if(!code) return;
+    if(code && !SignInTools.IsUserLoggedIn()) {
+      getToken(code).then(data => {
+        const token = data.access_token;
+        window.localStorage.setItem('token', token);
 
-    getToken(code).then(data => {
-      const token = data.access_token;
-      window.localStorage.setItem('token', token);
-      this.setState({ showButton: false });
+        if(window.history.replaceState) {
+          const location = window.location.toString();
+          window.history.replaceState({}, document.title, location.substring(0, location.indexOf('?')));
+          window.location.hash = 'step1';
+          this.setState({});
+        } else {
+          window.location = '/';
+        }
+      });
+    }
+  }
+
+  render() {
+    return(
+      SignInTools.IsUserLoggedIn() ? 
+      <LoggedIn /> :
+      null
+    );
+  }
+}
+
+class LoggedIn extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: {},
+      loading: true
+    };
+
+    this.getComponent = this.getComponent.bind(this);
+  }
+
+  componentDidMount() {
+    getUserInfo().then(data => {
+      console.log(data);
+      this.setState({ data, loading: false });
+      window.localStorage.setItem('username', data.login);
     });
   }
 
-  buildUrl(clientId, redirectUri, scope) {
-    return `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=${scope}&redirect_uri=${redirectUri}`;
-  }
-  
-  render() {
-    const url = this.buildUrl(this.props.clientId, '', 'user public_repo');
+  getComponent() {
+    const { avatar_url, email, login } = this.state.data;
 
+    return this.state.loading ?
+      <div className="loader"><i className="fa fa-spinner"></i></div> :
+      <figure className="user-info flex vertical-center">
+        <img src={avatar_url} />
+        <div className="name">
+          <p>{login}</p>
+          <p>{email}</p>
+        </div>
+        <LogOutButton />
+      </figure>; 
+  }
+
+  render() {
+    return(
+      this.getComponent()
+    );
+  }
+}
+
+class LogOutButton extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.logout = this.logout.bind(this);
+  }
+
+  logout() {
+    window.localStorage.clear();
+    window.location.hash = '';
+    window.location.reload();
+  }
+
+  render() {
     return (
-      <a href={url} 
-        className={ this.state.showButton ? 'login-button' : 'login-button hide' }>
-        Sign in with GitHub
-      </a>
-    )
+      <span className="title"
+        onClick={() => this.logout() }>
+        <i className="fa fa-sign-out"></i> Log out
+      </span>
+    );
   }
 }
 

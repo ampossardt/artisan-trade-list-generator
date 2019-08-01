@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
 class Item extends React.Component {
   constructor(props) {
@@ -14,7 +15,6 @@ class Item extends React.Component {
   }
 
   readFileUrl(event) {
-    console.log(event);
     let reader = new FileReader();
 
     reader.onloadend = () => {
@@ -28,6 +28,16 @@ class Item extends React.Component {
     const file = event.target.files[0];
 
     if(file) {
+      if(file.size / 1000 > 60) {
+        toast(`Maximum file size is 60kb. The image you tried to add was ${file.size / 1000}kb.`, {
+          type: 'error'
+        });
+
+        event.target.value = null;
+
+        return;
+      }
+
       reader.readAsDataURL(file);
     }
   }

@@ -1,0 +1,24 @@
+html(lang=en)
+  head
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css', integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO', crossorigin='anonymous')
+    link(rel='stylesheet', href='styles.css')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title /u/#{username} | Trade Wants
+  body
+    h1 /u/#{username}'s want list
+    section.main
+      each section in sections
+        h2 #{section["title"]}
+        each subsection in section.subSections
+          div.container-fluid
+            h3 #{subsection["title"]}
+            div.row
+              each item in subsection.items
+                div.col-6.col-md-4.col-xl-3.col-xxl-2
+                  img(src=item.imageUrl)
+                  p #{item["name"]}
+    footer
+      p Created using the Artisan Wants List generator | 
+        a(href='#', target='_blank') Generate your own 
+        span |&nbsp;
+        a(href='https://github.com/ampossardt/artisan-trade-list-generator', target='_blank') Source code

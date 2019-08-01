@@ -1,6 +1,6 @@
 .login-button {
   padding: 12px 12px 12px 50px;
-  background-color: #6e5494;
+  background-color: $github;
   color: #fff;
   text-align: center;
   border-radius: 4px;
@@ -8,7 +8,7 @@
   display: inline-block;
   position: relative;
   opacity: 1;
-  transition: opacity .3s;
+  transition: opacity .3s, background-color .3s;
 
   &:visited, &:active {
     text-decoration: none;
@@ -27,7 +27,54 @@
     left: 15px;
   }
 
-  &.hide {
-    opacity: 0;
+  &:hover {
+    background-color: $github-hover;
+  }
+}
+
+.user-info {
+  margin: 0;
+
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    margin-right: 10px;
+    border: 4px solid $github;
+  }
+
+  .name {
+    p {
+      margin-bottom: 5px;
+    }
+  }
+
+  .title {
+    margin-left: 15px;
+    background-color: $red;
+    padding: 8px;
+    transition: background-color .3s;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: $dark-red;
+    }
+
+    .fa-sign-out {
+      margin-right: 4px;
+    }
+  }
+}
+
+.loader {
+  height: 58px;
+  width: 350px;
+  text-align: center;
+
+  .fa-spinner {
+    animation: spin 1s linear infinite;
+    font-size: 1.5em;
+    margin-top: 15px;
   }
 }

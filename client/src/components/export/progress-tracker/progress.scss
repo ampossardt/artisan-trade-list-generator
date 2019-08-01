@@ -1,0 +1,73 @@
+.progress {
+  
+  margin: 30px auto;
+  width: 300px;
+  text-align: center;
+  color: $off-white;
+
+  .status {
+    padding: 10px;
+    margin: 0;
+    border-radius: 6px;
+    background-color: $dark-blue;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .icon {
+    font-family: FontAwesome;
+    font-size: 2em;
+    margin: 10px 0 15px 0;
+    display: inline-block;
+
+    &.ready {
+      color: $green;
+      &::before {
+        content:'\f00c';
+      }
+    }
+
+    &.loading {
+      color: $gray;
+      animation: spin .8s infinite linear;
+
+      &::before {
+        content:'\f110';
+      }
+    }
+
+    &.success {
+      color: $green;
+
+      &::before {
+        content:'\f058';
+      }
+    }
+
+    &.error {
+      color: $dark-red;
+
+      &::before {
+        content:'\f057';
+      }
+    }
+  }
+
+  p {
+    margin-top: 20px;
+    display: none;
+
+    &.show {
+      display: block;
+    }
+
+    a {
+      color: $off-white;
+      text-decoration: underline;
+      
+      &:visited {
+        color: $off-white;
+      }
+    }
+  }
+}

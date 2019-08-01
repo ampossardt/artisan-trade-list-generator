@@ -8,6 +8,10 @@ class SignInTools {
   static GetToken = () => {
     return window.localStorage.getItem('token');
   }
+
+  static GetUsername = () => {
+    return window.localStorage.getItem('username');
+  }
 }
 
 export default SignInTools;

@@ -1,6 +1,80 @@
 .instructions {
-  background-color: $dark-blue;
-  border-radius: 6px;
-  padding: 10px;
+  margin-top: 50px;
   color: $off-white;
+
+  .section {
+    background-color: $dark-blue;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  p, li { 
+    font-size: 1.05em;
+  }
+
+  .login-item-container {
+    padding: 10px 0 25px 0;
+  }
+
+  .login-item {
+    flex: 0 1 50%;
+    text-align: center;
+    height: 175px;
+    margin: 15px 20px 5px 20px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    @include hoverCardPop;
+
+    a {
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+      color: $off-white;
+      font-weight: bold;
+      font-size: 1.3em;
+
+      span {
+        display: block;
+        width: 100%;
+
+        &:before {
+          font-family: FontAwesome;
+          font-size: 2em;
+          color: $off-white;
+          display: block;
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    &.join {
+      background-color: #111;
+
+      &:hover {
+        background-color: #181818;
+      }
+      
+      span {
+        &:before {
+          content: '\f090';
+        }
+      }
+    }
+
+    &.existing {
+      background-color: $github;
+
+      &:hover {
+        background-color: $github-hover;
+      }
+
+      span {
+        &:before {
+          content: '\f09b';
+        }
+      }
+    }
+  }
 }

@@ -1,11 +1,19 @@
 @import './assets/variables';
+@import './assets/mixins';
 @import './components/login/oauth.scss';
 @import './assets/grid';
-@import './components//instructions/instructions.scss';
+@import './components/instructions/instructions.scss';
 @import './components/builder/builder.scss';
 @import './components/builder/section/section.scss';
 @import './components/builder/subsection/subsection.scss';
 @import './components/builder/item/item.scss';
+@import './components/navigation/navigation.scss';
+@import './components/generic/generic-components.scss';
+@import './components/color-selection/colors.scss';
+@import './components/color-selection/color-preview/color-preview.scss';
+@import './components/export/export.scss';
+@import './components/export/progress-tracker/progress.scss';
+@import './components/bars/bars.scss';
 
 body {
   background-color: $blue;
@@ -18,25 +26,53 @@ body {
 header {
   background-color: $dark-blue;
   border-bottom: 1px solid $off-white;
-  padding: 15px;
+  padding: 10px 15px;
   color: $off-white;
   display: flex;
   align-items: center;
 
   h3 {
     flex-grow: 1;
+    margin: 10px 0;
   }
 }
 
-h1.label {
+.main-scrollable {
+  width: 100vw;
+  overflow-y: auto;
+  @include viewHeightWithoutHeaderFooter;
+}
+
+h1.label, h2.label, h3.label, h4.label, h5.label {
   display: inline-block;
   padding: 3px;
   background-color: $off-white;
   color: $darker-blue;
+
+  &.section {
+    margin-top: 30px;
+  }
 }
 
-h3 {
+h1, h2, h3, h4, h5, p {
+  margin: 0 0 10px 0;
+}
+
+ol {
   margin: 0;
+  padding-left: 20px;
+
+  li {
+    margin: 5px;
+  }
+}
+
+a {
+  text-decoration: none;
+  
+  &:active, &:focus, &:visited {
+    text-decoration: none;
+  }
 }
 
 section {
@@ -57,6 +93,11 @@ input {
 
   &:focus {
     background-color: $dark-blue;
+  }
+
+  &.primary {
+    background-color: $off-white;
+    color: #000;
   }
 }
 
@@ -90,6 +131,125 @@ input {
   }
 }
 
+.button {
+  border: none; 
+  outline: none;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-top: 5px;
+  color: $off-white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  box-shadow: 3px 3px 4px 0 rgba(0,0,0, .25);
+  position: relative;
+  transition: all .3s;
+
+  &:hover {
+    margin-top: 3px;
+    box-shadow: 3px 3px 8px 0 rgba(0,0,0, .4);
+  }
+
+  &.right {
+    margin-left: auto;
+    margin-right: 20px;
+  }
+
+  &.green {
+    background-color: $green;
+
+    &:hover {
+      background-color: $dark-green;
+    }
+  }
+
+  &.turquoise {
+    background-color: $turquoise;
+
+    &:hover {
+      background-color: $dark-turquoise;
+    }
+  }
+
+  &.loading {
+    &::before {
+      font-family: FontAwesome;
+      content: '\f110';
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      margin-right: 8px;
+    }
+  }
+
+  &.secondary {
+    background-color: $darker-blue;
+
+    &:hover {
+      background-color: $dark-blue;
+    }
+  }
+
+  &.github {
+    background-color: $github;
+    color: $off-white;
+    padding-left: 46px;
+
+    &::before {
+      content:'';
+      background-image: url('/img/github-icon.png');
+      background-size: cover;
+      display: block;
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 7px;
+      left: 15px;
+    }
+  
+    &:hover {
+      background-color: $github-hover;
+    }
+  }
+
+  &:disabled {
+    background-color: $dark-gray;
+    color: $gray;
+    box-shadow: none;
+
+    &:hover {
+      background-color: $dark-gray;
+      margin-top: 5px;
+      box-shadow: none;
+    }
+  }
+
+  &.step {
+    font-size: 1.1em;
+
+    &::after {
+      font-family: FontAwesome;
+      content: '\f061';
+      display: inline-block;
+      margin-left: 10px;
+      font-size: 1em;
+    }
+  }
+}
+
+.toast-offset {
+  margin-top: 74px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .add {
   background-color: transparent;
   border: none;
@@ -117,4 +277,16 @@ input {
 }
 :-moz-placeholder { /* Firefox 18- */
   color: $dark-gray;
+}
+
+footer {
+  padding: 20px 10px;
+  width: 100%;
+  text-align: center;
+  background-color: $darker-blue;
+  color: $off-white;
+  position: fixed;
+  bottom:0;
+  left: 0;
+  box-shadow: 0 0 50px 12px rgba(0, 0, 0, .5);
 }

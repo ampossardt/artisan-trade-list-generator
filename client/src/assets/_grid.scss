@@ -1,13 +1,43 @@
 .container {
   width: 60%;
-  margin: 15px auto;
+  margin: 30px auto 80px auto;
+
+  &:first-child {
+    margin-top: 30px;
+  }
 
   &.full-width {
     width: 100%;
   }
+
+  &.fixed {
+    width: 700px;
+    max-width: 700px;
+  }
+
+  &.full-window {
+    width: 100vw;
+    height: calc(100vh - 79px); // Don't like magic but need to account for the header and footer
+  }
 }
 
 .flex {
+  display: flex;
+
+  &.center {
+    justify-items: center;
+  }
+
+  &.vertical-center {
+    align-items: center;
+  }
+
+  &.prevent-stretch {
+    align-items: flex-start;
+  }
+}
+
+.row {
   display: flex;
   flex-wrap: wrap;
 }

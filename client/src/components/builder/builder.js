@@ -1,35 +1,33 @@
 import React from 'react';
-import Section from './section/section'
+import Section from './section/section';
+import { saveGist, loadGist } from '../../tools/api';
+import { TitleBar, StepBar } from '../bars/bars';
+const uuid = require('uuid/v1');
 
 class Builder extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      sections: [],
-      sectionIdIncrementor: 1
+      sections: this.props.data
     };
 
     this.addSection = this.addSection.bind(this);
-    this.updateSection = this.updateSection.bind(this);
     this.getEmptySection = this.getEmptySection.bind(this);
+    this.handleGistLoad = this.handleGistLoad.bind(this);
+    this.handleGistSave = this.handleGistSave.bind(this);
   }
 
   addSection() {
     const sections = this.state.sections.slice();
-    const newSection = this.getEmptySection(this.state.sectionIdIncrementor);
+    const newSection = this.getEmptySection(uuid());
     sections.push(newSection);
 
     this.setState({ 
-      sections: sections,
-      sectionIdIncrementor: this.state.sectionIdIncrementor + 1
+      sections: sections
     });
-  }
 
-  updateSection(section) {
-    // const sections = this.state.sections.slice();
-    // sections.splice(section.id - 1, )
-    // sections.
+    this.props.onSectionChange(sections);
   }
 
   getEmptySection(id) {
@@ -39,13 +37,33 @@ class Builder extends React.Component {
       subSections: []
     };
   }
+
+  handleGistLoad() {
+    return loadGist()
+      .then(response => {
+        if(response) {
+          this.setState({
+            sections: response.data.layout
+          });
+          this.props.onDataChange(response.data);
+        }
+      });
+  }
+
+  handleGistSave() {
+    const data = Object.assign(this.props.saveData, { layout: this.state.sections });
+    return saveGist({ data });
+  }
   
   render() {
-    console.log(this.state.sections);
 
     return (
       <div className="container">
-        <h1 className="label">Step 1: Configure list layout</h1>
+        <TitleBar 
+          onLoadGist={() => this.handleGistLoad()}
+          onSaveGist={() => this.handleGistSave()}
+          showSave={this.state.sections && this.state.sections.length > 0} 
+          title={'Step 1: Configure layout'} />
         <article>
           { this.state.sections.map(item =>
             <Section 
@@ -60,6 +78,9 @@ class Builder extends React.Component {
             </a>
           </div>
         </article>
+        <StepBar
+          children='Next: Step 2'
+          step={2} />
       </div>
     )
   }

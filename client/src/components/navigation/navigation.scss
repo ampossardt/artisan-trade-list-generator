@@ -1,0 +1,60 @@
+.progress-navigation {
+  width: 60%;
+  padding: 30px;
+  margin: 0 auto;
+  background-color: $dark-blue;
+
+  .progress-content {
+    text-align: center;
+
+    h3 {
+      display: inline-block;
+      position: relative;
+      flex-grow: 0;
+      color: $darkest-gray;
+      margin: 0 25px;
+      cursor: pointer;
+      transition: color .3s;
+
+      &:first-child {
+        margin-left: 70px;
+      }
+
+      &:last-child {
+        margin-right: 70px;
+      }
+
+      &.active {
+        color: $off-white;
+      }
+    }
+
+    hr {
+      flex-grow: 1;
+      height: 1px;
+      border: none;
+      background-color: $darkest-gray;
+      transition: background-color .4s;
+      position: relative;
+
+      &::after {
+        content:'';
+        display: block;
+        height: 20px;
+        background-color: $off-white;
+        position: absolute;
+        width: 0;
+        z-index: 100;
+        transition: width .4s;
+      }
+
+      &.active {
+        
+
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

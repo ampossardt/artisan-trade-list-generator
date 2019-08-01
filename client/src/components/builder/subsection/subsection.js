@@ -1,5 +1,6 @@
 import React from 'react';
 import Item from '../item/item';
+const uuid = require('uuid/v1');
 
 class SubSection extends React.Component {
   constructor(props) {
@@ -7,8 +8,7 @@ class SubSection extends React.Component {
 
     this.state = {
       data: this.props.data,
-      subtitleClass: '',
-      incrementor: 1
+      subtitleClass: ''
     };
 
     this.titleChangeHandler = this.titleChangeHandler.bind(this);
@@ -28,15 +28,14 @@ class SubSection extends React.Component {
     const data = Object.assign(this.state.data);
 
     items.push({
-      id: this.state.incrementor,
+      id: uuid(),
       name: '',
       imageUrl: ''
     });
     data.items = items;
 
     this.setState({
-      data: data,
-      incrementor: this.state.incrementor + 1
+      data: data
     });
   }
 
@@ -55,17 +54,20 @@ class SubSection extends React.Component {
             onBlur={() => this.setState({ subtitleClass: '' })}
             placeholder="Enter a title..." />
         </div>
-        <div className="container full-width flex">
+        <div className="row">
           {
             this.state.data.items.map(item => 
               <Item
                 data={item}
                 key={item.id} />
           )}
+          <div className="col-2 flex">
+            <button 
+              className="add item"
+              onClick={ () => this.addItem() }>Add item</button>
+          </div>
         </div>
-        <button 
-          className="add item"
-          onClick={ () => this.addItem() }>Add item</button>
+        
       </div>
     )
   }
