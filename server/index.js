@@ -8,7 +8,7 @@ const { getHtml, getCss } = require('./tools/render');
 const app = express();
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', process.env.CORS_ALLOWED);
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT');
   next();
@@ -17,8 +17,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
-// Endpoint that requests an access token from github based on a provided authorization code via OAuth
-// which is provided client side
+// Requests an access token from GitHub based on access code sent back to client-side code
 app.post('/getaccesstoken', (request, response) => {
     const { code } = request.body;
 
@@ -41,22 +40,18 @@ app.post('/getaccesstoken', (request, response) => {
     });
 });
 
-// Endpoint that gets information about the logged-in user
+// Gets user information about the currently logged-in user
 app.get('/user', (request, response) => {
     const { authorization } = request.headers;
     console.log(constants);
 
     getUser(authorization)
-    .then(({ avatar_url, email, login, html_url }) => 
-        response.json({
-            avatar_url,
-            email,
-            login,
-            html_url
-        })
+    .then(data => 
+        response.json(data);
     );
 });
 
+// Creates or updates a Gist in GitHub of the currently logged-in user
 app.put('/gist', (request, response) => {
     const { data, username } = request.body;
     const escaped = JSON.stringify(data);
@@ -113,6 +108,7 @@ app.get('/gist', (request, response) => {
         });
 });
 
+// Check for the existance of the specific public repository used for GitHub Pages hosting
 app.get('/export/check-repo', (request, response) => {
     const { authorization } = request.headers;
     const { username } = request.query;
@@ -130,6 +126,7 @@ app.get('/export/check-repo', (request, response) => {
         .catch(error => response.status(500).send({ error }));
 });
 
+// Creates a public repository for GitHub Pages
 app.post('/export/create-repo', (request, response) => {
     const { authorization } = request.headers;
     const { username } = request.body;
@@ -145,6 +142,8 @@ app.post('/export/create-repo', (request, response) => {
         .catch(error => response.status(500).send({ error }));
 });
 
+// Creates tree and commit with latest files based on GitHub Gist with layout/color data,
+// then points HEAD to that commit
 app.post('/export/upload', (request, response) => {
     const { authorization } = request.headers;
     const { username } = request.body;
@@ -177,4 +176,6 @@ app.post('/export/upload', (request, response) => {
 
 app.listen(process.env.PORT, error => {
     console.log(`server listening on ${process.env.PORT}`);
+    console.log(process.env.OAUTH_ID);
+    console.log(process.env.OAUTH_SECRET);
 });
