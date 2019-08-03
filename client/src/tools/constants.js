@@ -1,6 +1,10 @@
+require('dotenv').config();
+
 const constants = {
-  apiBaseUrl: 'http://localhost:3010',
-  githubClientId: '94399eee066e2997c7bd'
+  apiBaseUrl: process.env.REACT_APP_API_BASE_URL,
+  githubClientId: process.env.REACT_APP_GITHUB_CLIENT_ID,
+  redirectUri: process.env.REACT_APP_REDIRECT_URI,
+  githubScopes: process.env.REACT_APP_GITHUB_SCOPES
 };
 
 export default constants;

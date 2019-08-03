@@ -48,7 +48,7 @@ class ColorSelection extends React.Component {
 
   render() {
     return(
-      <div className="container color-selection">
+      <div className="container color-selection step-container animate">
         <TitleBar 
           onLoadGist={() => this.handleGistLoad()}
           onSaveGist={() => this.handleGistSave()}

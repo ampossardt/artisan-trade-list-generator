@@ -58,7 +58,7 @@ class Builder extends React.Component {
   render() {
 
     return (
-      <div className="container">
+      <div className="container step-container animate">
         <TitleBar 
           onLoadGist={() => this.handleGistLoad()}
           onSaveGist={() => this.handleGistSave()}

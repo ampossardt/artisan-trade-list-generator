@@ -55,7 +55,7 @@ export class Button extends React.Component {
   render() {
     return (
       <button 
-        className={`${this.props.className || ''} ${(this.state.loading && 'loading') || ''}`}
+        className={`${this.props.className || ''} ${(this.state.loading && 'icon loading') || ''}`}
         disabled={this.props.disabled}
         onClick={() => this.clickHandler() }>
         {this.props.children}

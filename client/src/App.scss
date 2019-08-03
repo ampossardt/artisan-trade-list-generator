@@ -43,19 +43,19 @@ header {
   @include viewHeightWithoutHeaderFooter;
 }
 
-h1.label, h2.label, h3.label, h4.label, h5.label {
-  display: inline-block;
-  padding: 3px;
-  background-color: $off-white;
-  color: $darker-blue;
+h1, h2, h3, h4, h5, p {
+  margin: 0 0 10px 0;
+
+  &.label {
+    display: inline-block;
+    padding: 3px;
+    background-color: $off-white;
+    color: $darker-blue;
+  }
 
   &.section {
     margin-top: 30px;
   }
-}
-
-h1, h2, h3, h4, h5, p {
-  margin: 0 0 10px 0;
 }
 
 ol {
@@ -172,16 +172,6 @@ input {
     }
   }
 
-  &.loading {
-    &::before {
-      font-family: FontAwesome;
-      content: '\f110';
-      animation: spin 1s linear infinite;
-      display: inline-block;
-      margin-right: 8px;
-    }
-  }
-
   &.secondary {
     background-color: $darker-blue;
 
@@ -190,10 +180,39 @@ input {
     }
   }
 
+  &.dark {
+    background-color: #222;
+
+    &:hover {
+      background-color: #292929;
+    }
+  }
+
+  &.icon {
+    &::before {
+      font-family: FontAwesome;
+      display: inline-block;
+      margin-right: 8px;
+    }
+
+    &.loading {
+      &::before {
+        content: '\f110';
+        animation: spin 1s linear infinite;
+      }
+    }
+
+    &.code {
+      &::before {
+        content: '\f121';
+      }
+    }
+  }
+
   &.github {
     background-color: $github;
     color: $off-white;
-    padding-left: 46px;
+    padding-left: 40px;
 
     &::before {
       content:'';
@@ -201,10 +220,10 @@ input {
       background-size: cover;
       display: block;
       position: absolute;
-      width: 24px;
-      height: 24px;
-      top: 7px;
-      left: 15px;
+      width: 22px;
+      height: 22px;
+      top: 8px;
+      left: 11px;
     }
   
     &:hover {
@@ -289,4 +308,45 @@ footer {
   bottom:0;
   left: 0;
   box-shadow: 0 0 50px 12px rgba(0, 0, 0, .5);
+
+  .flex {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  p {
+    display: inline-block;
+    flex-grow: 1;
+    margin-bottom: 0;
+  }
+
+  .button {
+    padding: 8px;
+    margin-right: 10px;
+
+    &.github {
+      &::before {
+        top: 6px;
+      }
+    }
+  }
+}
+
+.step-container {
+  opacity: 0;
+
+  &.animate {
+    animation: .4s animate-step forwards;
+  }
+}
+
+@keyframes animate-step {
+  0% {
+    opacity: 0;
+    margin-top: 10px;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 30px;
+  }
 }

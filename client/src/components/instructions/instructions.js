@@ -8,12 +8,12 @@ class Instructions extends React.Component {
     this.buildUrl = this.buildUrl.bind(this);
   }
 
-  buildUrl(redirectUri, scope) {
-    return `https://github.com/login/oauth/authorize?client_id=${constants.githubClientId}&scope=${scope}&redirect_uri=${redirectUri}`;
+  buildUrl() {
+    return `https://github.com/login/oauth/authorize?client_id=${constants.githubClientId}&scope=${constants.githubScopes}&redirect_uri=${constants.redirectUri}`;
   }
 
   render() {
-    const url = this.buildUrl('http://ap-dev.ngrok.io', 'user public_repo gist');
+    const url = this.buildUrl('https://artisan-wants-client.herokuapp.com', 'user public_repo gist');
 
     return (
       <div className="container fixed instructions">

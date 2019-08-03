@@ -1,6 +1,5 @@
 import React from 'react'
 import { getToken, getUserInfo } from '../../tools/request-token';
-import { withLoggedIn } from '../helper/conditional-display';
 import SignInTools from '../../tools/sign-in-tools';
 
 class SignInOAuth extends React.Component {

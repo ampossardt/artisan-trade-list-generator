@@ -46,9 +46,7 @@ app.get('/user', (request, response) => {
     console.log(constants);
 
     getUser(authorization)
-    .then(data => 
-        response.json(data);
-    );
+        .then(data => response.json(data));
 });
 
 // Creates or updates a Gist in GitHub of the currently logged-in user

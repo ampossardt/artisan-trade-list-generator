@@ -20,7 +20,7 @@ class Export extends React.Component {
 
   render() {
     return(
-      <div className="container">
+      <div className="container step-container animate">
         <ExportBar 
           title='Step 3: Export'
           onExport={() => this.setState({ startExport: true }) }
