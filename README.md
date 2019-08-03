@@ -16,7 +16,7 @@ Through the GitHub API and some other tools which I will not go into too much de
 
 Currently, the site is located here:
 
-`[https://artisan-wants-client.herokuapp.com](https://artisan-wants-client.herokuapp.com)`
+[`https://artisan-wants-client.herokuapp.com`](https://artisan-wants-client.herokuapp.com)
 
 ### Step 2: Log in to GitHub
 
@@ -49,7 +49,7 @@ The final step is exporting everything to GitHub. The username field is simply u
 
 ### Where can I report issues or request features?
 
-The source code for this application is available publicly at `[https://github.com/ampossardt/artisan-trade-list-generator](https://github.com/ampossardt/artisan-trade-list-generator)`. If you run into an issue with generation, notice something doesn't look right, or simply would like to see some new feature implemented, go to the 'Issues' tab at the top of that page and open up an issue.
+The source code for this application is available publicly at [`https://github.com/ampossardt/artisan-trade-list-generator`](https://github.com/ampossardt/artisan-trade-list-generator). If you run into an issue with generation, notice something doesn't look right, or simply would like to see some new feature implemented, go to the 'Issues' tab at the top of that page and open up an issue.
 
 ### Help, my website shows 404 when I go to it! (Or) my website didn't update when I made new changes!
 
