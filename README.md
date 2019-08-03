@@ -1,68 +1,67 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Artisan Wants Generator
 
-## Available Scripts
+Tired of using Google Docs as a way to manage the list of artisans you are looking for? Wishing there was a more mobile-friendly way to display said list? Use my site to generate a nicely-formatted, mobile-friendly list of artisans with the colors of your choice!
 
-In the project directory, you can run:
+## How does it work?
 
-### `npm start`
+GitHub is a cloud-based source control management provider that is used widely by software developers. GitHub has a nice feature built-in to allow users to host static websites from a specific subdomain of their website, provided that you name things in a specific way. Every account is allowed a repository in the format '{your username}.github.io', which, when HTML and CSS files are sent to this repository, are automatically deployed and hosted at a URL with the same format.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Through the GitHub API and some other tools which I will not go into too much detail about, we're able to dynamically build a static website and push to this special repository, so that the world can gaze in awe at the list of overpriced resin you'd like to get your hands on.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+**In order 
 
-### `npm test`
+## How do I use it?
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Step 1: Go to the website
 
-### `npm run build`
+Currently, the site is located here:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`[https://artisan-wants-client.herokuapp.com](https://artisan-wants-client.herokuapp.com)`
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Step 2: Log in to GitHub
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you do not have an account, you can create one using the buttom that first shows up on the home page. Otherwise, you can click the 'log in' button, where you will be redirected to GitHub to authorize this application to access your account data. Once you accept, you will be redirected back to the site and can start configuring your list.
 
-### `npm run eject`
+**Note: This application requires 'public repository' permissions via your GitHub account in order to create the repository and make commits to it. There is not a more granular permission that I can request, so I recommend creating a new GitHub account for use with this application if you are at all concerned with giving an application access to all of your public repositories.**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Step 3: Configure your list
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Creating your layout**
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The layout of your page is made up of a few different components: `Sections`, `Subsections`, 
+and `Items`.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+A `section` is a top-level representation. This would generally be the maker of the caps you are looking for, ie. Keyforge, Nightcaps, Brocaps, etc. Each section has a title and any number of subsections underneath it.
 
-## Learn More
+A `subsection` is the next tier underneath sections. This should be the sculpt that you are looking for, ie. Shishi, Fugthulu, Last Pilot, etc. Each one has a title and any number of items underneath it.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+An `item` is the representation of a cap that you are looking for. It has an image as well as the name of the cap.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Selecting your colors**
 
-### Code Splitting
+Color selection is straightforward, and the application of each color you select will show up in a preview pane at the bottom of the page. Currently, the section title color, section title background color, subsection title color, subsection title background color, item text color, and overall background color are supported as customization options, although this could change in the future if people would like more customization options.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+**Exporting**
 
-### Analyzing the Bundle Size
+The final step is exporting everything to GitHub. The username field is simply used to generate the title for the webpage. Once you click export, the files for your website will be generated and uploaded to GitHub for your viewing pleasure.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## FAQ
 
-### Making a Progressive Web App
+### Where can I report issues or request features?
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+The source code for this application is available publicly at `[https://github.com/ampossardt/artisan-trade-list-generator](https://github.com/ampossardt/artisan-trade-list-generator)`. If you run into an issue with generation, notice something doesn't look right, or simply would like to see some new feature implemented, go to the 'Issues' tab at the top of that page and open up an issue.
 
-### Advanced Configuration
+### Help, my website shows 404 when I go to it! (Or) my website didn't update when I made new changes!
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+GitHub recognizes when new files are sent to this specifically-named repository, but it still needs to do some work to make it accessible. You should generally see changes within 30 seconds of either creating a brand-new site, or making edits and redeploying to your existing site.
 
-### Deployment
+### 60kb max file size for images? What gives?
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Images you add during the creation process are read as `Data URIs`, which is basically a textual-representation of the image. I'd like to keep file sizes reasonable when uploading all of this data to GitHub. If you disagree, or can think of a legitimate reason to increase the size limit, I am open to suggestions and you are free to [file an issue](https://github.com/ampossardt/artisan-trade-list-generator/issues) on the official repository.
 
-### `npm run build` fails to minify
+I recommend keeping your images to a max size of 400px by 400px (width is most important here).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+If decreasing the size is still not enough, there are a number of resources for 'minifying' images via compression:
+
+* PNG - [https://tinypng.com](https://tinypng.com)
+* JPG - [https://tinyjpg.com](https://tinyjpg.com)
