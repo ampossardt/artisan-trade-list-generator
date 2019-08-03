@@ -8,8 +8,6 @@ GitHub is a cloud-based source control management provider that is used widely b
 
 Through the GitHub API and some other tools which I will not go into too much detail about, we're able to dynamically build a static website and push to this special repository, so that the world can gaze in awe at the list of overpriced resin you'd like to get your hands on.
 
-**In order 
-
 ## How do I use it?
 
 ### Step 1: Go to the website
@@ -22,7 +20,7 @@ Currently, the site is located here:
 
 If you do not have an account, you can create one using the buttom that first shows up on the home page. Otherwise, you can click the 'log in' button, where you will be redirected to GitHub to authorize this application to access your account data. Once you accept, you will be redirected back to the site and can start configuring your list.
 
-**Note: This application requires 'public repository' permissions via your GitHub account in order to create the repository and make commits to it. There is not a more granular permission that I can request, so I recommend creating a new GitHub account for use with this application if you are at all concerned with giving an application access to all of your public repositories.**
+**`Note: This application requires 'public repository' permissions via your GitHub account in order to create the repository and make commits to it. There is not a more granular permission that I can request, so I recommend creating a new GitHub account for use with this application if you are at all concerned with giving an application access to all of your public repositories.`**
 
 ### Step 3: Configure your list
 
@@ -65,3 +63,9 @@ If decreasing the size is still not enough, there are a number of resources for 
 
 * PNG - [https://tinypng.com](https://tinypng.com)
 * JPG - [https://tinyjpg.com](https://tinyjpg.com)
+
+A potential future improvement I can see being popular would be to implement this directly into image upload so that the user experience is seamless and doesn't require 'prepping' images for the site. If you'd like to see this feature, please go to the Github repository [issues section](https://github.com/ampossardt/artisan-trade-list-generator/issues) and either open an issue or vote on an existing issue.
+
+### But your own site isn't mobile friendly! It's 2019 for god's sake!
+
+The nature of this site doesn't translate well to mobile. I'm not sure there would be enough mobile use to justify making sure it functioned and displayed properly, however if you disagree, feel free to open up an issue about it.
