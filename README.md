@@ -20,7 +20,7 @@ Currently, the site is located here:
 
 If you do not have an account, you can create one using the buttom that first shows up on the home page. Otherwise, you can click the 'log in' button, where you will be redirected to GitHub to authorize this application to access your account data. Once you accept, you will be redirected back to the site and can start configuring your list.
 
-**`Note: This application requires 'public repository' permissions via your GitHub account in order to create the repository and make commits to it. There is not a more granular permission that I can request, so I recommend creating a new GitHub account for use with this application if you are at all concerned with giving an application access to all of your public repositories.`**
+**Note: This application requires 'public repository' permissions via your GitHub account in order to create the repository and make commits to it. There is not a more granular permission that I can request, so I recommend creating a new GitHub account for use with this application if you are at all concerned with giving an application access to all of your public repositories.**
 
 ### Step 3: Configure your list
 
