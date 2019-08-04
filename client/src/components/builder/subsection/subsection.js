@@ -7,8 +7,7 @@ class SubSection extends React.Component {
     super(props);
 
     this.state = {
-      data: this.props.data,
-      subtitleClass: ''
+      data: this.props.data
     };
 
     this.titleChangeHandler = this.titleChangeHandler.bind(this);
@@ -42,18 +41,12 @@ class SubSection extends React.Component {
   render() {
     return (
       <div className="sub-section-content">
-        <div className="control-container">
-          <span className={`icon ${this.state.subtitleClass}`}>
-            <i className="fa fa-angle-double-right" aria-hidden="true"></i>
-          </span>
-          <input 
-            type="text"
-            value={this.state.data.title} 
-            onChange={(event) => this.titleChangeHandler(event)}
-            onFocus={() => this.setState({ subtitleClass: 'active' }) }
-            onBlur={() => this.setState({ subtitleClass: '' })}
-            placeholder="Enter a title..." />
-        </div>
+        <input 
+          type="text"
+          value={this.state.data.title} 
+          className='title'
+          onChange={(event) => this.titleChangeHandler(event)}
+          placeholder="Subsection title" />
         <div className="row">
           {
             this.state.data.items.map(item => 

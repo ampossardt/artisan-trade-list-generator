@@ -20,8 +20,8 @@ class Builder extends React.Component {
 
   addSection() {
     const sections = this.state.sections.slice();
-    const newSection = this.getEmptySection(uuid());
-    sections.push(newSection);
+
+    sections.push(this.getEmptySection());
 
     this.setState({ 
       sections: sections
@@ -30,11 +30,11 @@ class Builder extends React.Component {
     this.props.onSectionChange(sections);
   }
 
-  getEmptySection(id) {
+  getEmptySection() {
     return {
-      id: id,
+      id: uuid(),
       title: '',
-      subSections: []
+      subSections: [{ id: uuid(), title: '', items: []}]
     };
   }
 
@@ -74,7 +74,7 @@ class Builder extends React.Component {
             <a 
               onClick={ () => this.addSection() }
               className="add-section">
-              Add new section...
+              Add section...
             </a>
           </div>
         </article>

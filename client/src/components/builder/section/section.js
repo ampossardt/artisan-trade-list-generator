@@ -7,8 +7,7 @@ class Section extends React.Component {
     super(props);
 
     this.state = {
-      data: this.props.sectionData,
-      titleClass: ''
+      data: this.props.sectionData
     };
 
     this.titleChangedHandler = this.titleChangedHandler.bind(this);
@@ -43,26 +42,11 @@ class Section extends React.Component {
     return (
       <section>
         <div className="section-content">
-          {/* <div className="control-container">
-            <span className={`icon ${this.state.titleClass}`}>
-              <i className="fa fa-angle-double-right" aria-hidden="true"></i>
-            </span>
-            <input type="text" 
-              value={this.state.data.title} 
-              onChange={ (event) => this.titleChangedHandler(event) }
-              onFocus={() => this.setState({ titleClass: 'active' }) }
-              onBlur={() => this.setState({ titleClass: '' })}
-              placeholder="Enter a title..." />
-          </div> */}
-          <div>
-            <input type="text"
-              className="primary"
-              value={this.state.data.title} 
-              onChange={ (event) => this.titleChangedHandler(event) }
-              onFocus={() => this.setState({ titleClass: 'active' }) }
-              onBlur={() => this.setState({ titleClass: '' })}
-              placeholder="Enter a title..." />
-          </div>
+          <input type="text"
+            className="primary title"
+            value={this.state.data.title} 
+            onChange={ (event) => this.titleChangedHandler(event) }
+            placeholder="Section Title" />
           {
             this.state.data.subSections.map(subsection => 
               <SubSection 

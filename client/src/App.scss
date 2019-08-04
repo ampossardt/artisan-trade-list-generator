@@ -20,6 +20,7 @@ body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  font-family: Roboto;
   margin: 0;
 }
 
@@ -44,7 +45,7 @@ header {
 }
 
 h1, h2, h3, h4, h5, p {
-  margin: 0 0 10px 0;
+  margin: 0 0 12px 0;
 
   &.label {
     display: inline-block;
@@ -56,6 +57,11 @@ h1, h2, h3, h4, h5, p {
   &.section {
     margin-top: 30px;
   }
+}
+
+h1, h2 {
+  font-family: Lato;
+  font-weight: 300;
 }
 
 ol {
@@ -91,42 +97,21 @@ input {
   caret-color: $gray;
   color: $off-white;
 
-  &:focus {
-    background-color: $dark-blue;
-  }
-
   &.primary {
     background-color: $off-white;
     color: #000;
   }
-}
 
-.control-container {
-  display: flex;
+  &.title {
+    background-color: rgba(255,255,255, .1);
+    border-radius: 0;
+    border-bottom: 1px solid $dark-gray;
+    transition: .4s all;
+    color: $off-white;
 
-  input[type=text] {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  .icon {
-    flex-basis: 32px;
-    flex-grow: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;    
-    background-color: $off-white;
-    border-radius: 4px 0 0 4px;
-    transition: .3s background-color, .3s color;
-
-    .fa {
-      font-size: 1.4em;
-      margin-top: -2px;
-    }
-
-    &.active {
-      background-color: $blue;
-      color: $off-white;
+    &:focus {
+      border-bottom-color: $turquoise;
+      background-color: rgba(255,255,255, 0);
     }
   }
 }
@@ -273,8 +258,9 @@ input {
   background-color: transparent;
   border: none;
   outline: none;
+  display: block;
   font-size: 1em;
-  margin: 5px 0;
+  padding: 0 0 15px 15px;
   cursor: pointer;
   color: $off-white;
 

@@ -4,6 +4,9 @@ $blue: #34495e;
 $darker-blue: scale-color(#2c3e50, $lightness: -10%);
 $darkest-blue: scale-color(#2c3e50, $lightness: -20%);
 
+$dark-blue-gradient: linear-gradient(to top right, #2c3e50, scale-color(#2c3e50, $lightness: -12%));
+$darker-blue-gradient: linear-gradient(to top right, scale-color(#2c3e50, $lightness: -12%), scale-color(#2c3e50, $lightness: -24%));
+
 $off-white: #ecf0f1;
 $silver: #bdc3c7;
 
