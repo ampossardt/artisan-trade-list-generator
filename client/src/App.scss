@@ -55,7 +55,7 @@ h1, h2, h3, h4, h5, p {
   }
 
   &.section {
-    margin-top: 30px;
+    margin-top: 15px;
   }
 }
 
@@ -82,7 +82,7 @@ a {
 }
 
 section {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 input {
@@ -127,9 +127,9 @@ input {
   margin-top: 5px;
   color: $off-white;
   text-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  box-shadow: 3px 3px 4px 0 rgba(0,0,0, .25);
   position: relative;
   transition: all .3s;
+  @include depth-2;
 
   &:hover {
     margin-top: 3px;
@@ -216,6 +216,14 @@ input {
     }
   }
 
+  &.dark-alternate {
+    background-color: #383838;
+
+    &:hover {
+      background-color: #464646;
+    }
+  }
+
   &:disabled {
     background-color: $dark-gray;
     color: $gray;
@@ -238,6 +246,23 @@ input {
       margin-left: 10px;
       font-size: 1em;
     }
+  }
+
+  &.center {
+    display: inline-block;
+    margin: 0 auto 20px auto;
+  }
+
+  &.no-hover {
+    &:hover {
+      margin-top: 0;
+    }
+  }
+}
+
+a {
+  &.button {
+    font-size: .9em;
   }
 }
 
@@ -272,16 +297,16 @@ input {
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: $dark-gray;
+  color: $darker-gray;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: $dark-gray;
+  color: $darker-gray;
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: $dark-gray;
+  color: $darker-gray;
 }
 :-moz-placeholder { /* Firefox 18- */
-  color: $dark-gray;
+  color: $darker-gray;
 }
 
 footer {

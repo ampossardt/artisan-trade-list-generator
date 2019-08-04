@@ -1,5 +1,5 @@
 .instructions {
-  margin-top: 50px;
+  margin-top: 30px;
   color: $off-white;
 
   .section {
@@ -7,10 +7,57 @@
     border-radius: 6px;
     padding: 15px;
     margin-bottom: 20px;
+    text-align: center;
+    @include depth-2;
+  }
+
+  h1 {
+    &.heading {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+  }
+
+  h2 {
+    margin-top: 18px;
+    text-decoration: underline;
+
+    &:first-child {
+      margin-top: 0;
+    }
+    &::before {
+      content: '';
+      font-family: 'FontAwesome';
+      display: inline-block;
+      margin-right: 10px;
+      font-size: .9em;
+    }
+
+    &.github {
+      &::before { content: '\f113'; }
+    }
+    &.build {
+      &::before { content: '\f0ad'; }
+    }
+    &.colors {
+      &::before { content: '\f1fb'; }
+    }
+    &.export {
+      &::before { content: '\f0ec'; }
+    }
+  }
+
+  .create-account {
+    margin: 0 auto;
+    padding-top: 10px;
+    display: block;
+    text-align: center;
   }
 
   p, li { 
     font-size: 1.05em;
+    margin-bottom: 10px;
   }
 
   .login-item-container {
@@ -18,10 +65,10 @@
   }
 
   .login-item {
-    flex: 0 1 50%;
+    max-width: 40%;
     text-align: center;
     height: 175px;
-    margin: 15px 20px 5px 20px;
+    margin: 15px auto 5px auto;
     border-radius: 6px;
     box-sizing: border-box;
     @include hoverCardPop;
@@ -45,20 +92,6 @@
           color: $off-white;
           display: block;
           margin-bottom: 10px;
-        }
-      }
-    }
-
-    &.join {
-      background-color: #111;
-
-      &:hover {
-        background-color: #181818;
-      }
-      
-      span {
-        &:before {
-          content: '\f090';
         }
       }
     }

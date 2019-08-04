@@ -3,6 +3,7 @@
   padding: 30px;
   margin: 0 auto;
   background-color: $dark-blue;
+  @include depth-2;
 
   .progress-content {
     text-align: center;

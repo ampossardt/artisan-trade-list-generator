@@ -1,6 +1,6 @@
 import React from 'react';
 import ColorPreview from './color-preview/color-preview';
-import { TitleBar, StepBar } from '../bars/bars';
+import { TitleBarWithButtons, StepBar } from '../bars/bars';
 import { saveGist, loadGist } from '../../tools/api';
 
 class ColorSelection extends React.Component {
@@ -49,15 +49,17 @@ class ColorSelection extends React.Component {
   render() {
     return(
       <div className="container color-selection step-container animate">
-        <TitleBar 
+        <TitleBarWithButtons 
           onLoadGist={() => this.handleGistLoad()}
           onSaveGist={() => this.handleGistSave()}
           showSave={this.state.changed} 
           title={'Step 2: Select colors'} />
         <article>
           <section>
-            <h2 className="label section">Background</h2>
-            <div className="flex">
+            <div className="flex vertical-center">
+              <div className="col-4">
+                <h2 className="label">Background</h2>
+              </div>
               <ColorSelectionItem 
                 selected={this.state.backgroundColor}
                 title='Background color'
@@ -65,8 +67,10 @@ class ColorSelection extends React.Component {
             </div>
           </section>
           <section>
-            <h2 className="label">Title</h2>
-            <div className="flex">
+            <div className="flex vertical-center">
+              <div className="col-4">
+                <h2 className="label">Title</h2>
+              </div>
               <ColorSelectionItem 
                 selected={this.state.titleTextColor}
                 title='Title text color'
@@ -78,8 +82,10 @@ class ColorSelection extends React.Component {
             </div>
           </section>
           <section>
-            <h2 className="label">Subtitle</h2>
-            <div className="flex">
+            <div className="flex vertical-center">
+              <div className="col-4">
+                <h2 className="label">Subtitle</h2>
+              </div>
               <ColorSelectionItem 
                 selected={this.state.subtitleTextColor}
                 title='Subtitle text color'
@@ -91,8 +97,10 @@ class ColorSelection extends React.Component {
             </div>
           </section>
           <section>
-            <h2 className="label">Items</h2>
-            <div className="flex">
+            <div className="flex vertical-center">
+              <div className="col-4">
+                <h2 className="label">Items</h2>
+              </div>
               <ColorSelectionItem 
                 selected={this.state.itemTextColor}
                 title='Item text color'

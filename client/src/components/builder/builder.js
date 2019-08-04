@@ -1,7 +1,7 @@
 import React from 'react';
 import Section from './section/section';
 import { saveGist, loadGist } from '../../tools/api';
-import { TitleBar, StepBar } from '../bars/bars';
+import { TitleBarWithButtons, StepBar } from '../bars/bars';
 const uuid = require('uuid/v1');
 
 class Builder extends React.Component {
@@ -59,7 +59,7 @@ class Builder extends React.Component {
 
     return (
       <div className="container step-container animate">
-        <TitleBar 
+        <TitleBarWithButtons 
           onLoadGist={() => this.handleGistLoad()}
           onSaveGist={() => this.handleGistSave()}
           showSave={this.state.sections && this.state.sections.length > 0} 

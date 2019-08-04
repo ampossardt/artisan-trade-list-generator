@@ -1,7 +1,7 @@
 import React from 'react';
-import { ExportBar } from '../bars/bars';
+import { TitleBar } from '../bars/bars';
 import ProgressTracker from './progress-tracker/progress';
-import SignInTools from '../../tools/sign-in-tools';
+import { Button } from '../generic';
 
 class Export extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class Export extends React.Component {
   render() {
     return(
       <div className="container step-container animate">
-        <ExportBar 
+        <TitleBar 
           title='Step 3: Export'
           onExport={() => this.setState({ startExport: true }) }
           showSave={this.props.username}
@@ -40,7 +40,15 @@ class Export extends React.Component {
             placeholder='username'
           />
         </div>
-        <h2>Then click the export button to begin the export.</h2>
+        <div className="flex">
+          <Button
+            className={'button github center no-hover'}
+            onClick={() => this.setState({ startExport: true })}
+            children={'Export to GitHub'}
+            disabled={!this.props.username}
+            hideLoader={true}
+          />
+        </div>
         <ProgressTracker
           start={this.state.startExport}
           saveData={this.props.saveData}

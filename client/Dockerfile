@@ -1,6 +1,14 @@
 FROM node:12.2.0-alpine as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
+
+# Build-time arguments that will be added as environmental variables
+# These need to be included in both steps
+ARG REACT_APP_GITHUB_CLIENT_ID
+ARG REACT_APP_API_BASE_URL
+ARG REACT_APP_GITHUB_SCOPES
+ARG REACT_APP_REDIRECT_URI
+
 COPY package.json /app/package.json
 RUN npm install --silent
 RUN npm install react-scripts@3.0.1 -g --silent

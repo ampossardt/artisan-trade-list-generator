@@ -3,6 +3,8 @@
   width: 100%;
   border-radius: 4px;
   background-image: $dark-blue-gradient;
+  position: relative;
+  @include depth-2;
 
   input[type=text] {
     &.title {
@@ -13,5 +15,22 @@
       width: 100%;
       box-sizing: border-box;
     }
+
+    + .fa-pencil {
+      position: absolute;
+      color: $gray;
+      padding: 11px 12px;
+      left: 0;
+      top: 0;
+      transition: .4s all;
+    }
+
+    &:focus + .fa-pencil {
+      color: $off-white;
+    }
+  }
+  
+  .add {
+    margin-left: 20px;
   }
 }

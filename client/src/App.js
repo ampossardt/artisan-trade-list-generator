@@ -128,7 +128,7 @@ class App extends React.Component {
         <ToastContainer className='toast-offset' />
         <header>
           <h3>
-            artisan wants generator
+            Artisan Wants Generator
           </h3>
           <SignInOAuth />
         </header>

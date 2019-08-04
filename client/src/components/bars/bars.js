@@ -30,6 +30,14 @@ export function StepBar(props) {
 }
 
 export function TitleBar(props) {
+  return (
+    <div>
+      <h1 className="label">{props.title}</h1>
+    </div>
+  );
+}
+
+export function TitleBarWithButtons(props) {
   return(
     <div className="flex prevent-stretch">
       <h1 className="label">{props.title}</h1>
