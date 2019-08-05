@@ -5,11 +5,6 @@ class Item extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      data: this.props.data,
-      nameClass: ''
-    };
-
     this.readFileUrl = this.readFileUrl.bind(this);
     this.updateName = this.updateName.bind(this);
   }
@@ -18,11 +13,9 @@ class Item extends React.Component {
     let reader = new FileReader();
 
     reader.onloadend = () => {
-      const data = Object.assign(this.state.data, { imageUrl: reader.result });
-      
-      this.setState({
-        data: data
-      });
+      this.props.onUpdateItem(
+        Object.assign({}, this.props.data, { imageUrl: reader.result })
+      );
     };
     
     const file = event.target.files[0];
@@ -43,11 +36,9 @@ class Item extends React.Component {
   }
 
   updateName(event) {
-    const data = Object.assign(this.state.data, { name: event.target.value });
-
-    this.setState({
-      data: data
-    });
+    this.props.onUpdateItem(
+      Object.assign({}, this.props.data, { name: event.target.value })
+    );
   }
 
   render() {
@@ -56,16 +47,14 @@ class Item extends React.Component {
         <div className="item">
           <input
             type="text"
-            value={this.state.data.name}
+            value={this.props.data.name}
             onChange={ (event) => this.updateName(event) }
-            onFocus={() => this.setState({ nameClass: 'active' }) }
-            onBlur={() => this.setState({ nameClass: '' })}
             placeholder="Name"
             autoComplete="off" />
           <input 
             type="file" 
             onChange={ (event) => this.readFileUrl(event) } />
-          <img className="preview" src={this.state.data.imageUrl} />
+          <img className="preview" src={this.props.data.imageUrl} />
         </div>
       </div>
     );

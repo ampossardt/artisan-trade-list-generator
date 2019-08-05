@@ -6,36 +6,42 @@ class SubSection extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      data: this.props.data
-    };
-
-    this.titleChangeHandler = this.titleChangeHandler.bind(this);
+    this.changeTitle = this.changeTitle.bind(this);
     this.addItem = this.addItem.bind(this);
   }
 
-  titleChangeHandler(event) {
-    const data = Object.assign(this.state.data, { title: event.target.value });
-
-    this.setState({
-      data: data
-    });
+  changeTitle(event) {
+    this.props.onUpdateSubsection(
+      Object.assign({}, this.props.data, { title: event.target.value })
+    );
   }
 
   addItem() {
-    const items = this.state.data.items.slice();
-    const data = Object.assign(this.state.data);
+    this.props.onUpdateSubsection(
+      Object.assign({}, this.props.data, {
+        items: [...this.props.data.items, {
+          id: uuid(),
+          name: '',
+          imageUrl: ''
+        }]
+      })
+    );
+  }
 
-    items.push({
-      id: uuid(),
-      name: '',
-      imageUrl: ''
-    });
-    data.items = items;
+  removeItem(id) {
+    this.props.onUpdateSubsection(
+      Object.assign({}, this.props.data, {
+        items: this.props.data.items.filter(item => item.id !== id)
+      })
+    );
+  }
 
-    this.setState({
-      data: data
-    });
+  updateItem(newItem) {
+    this.props.onUpdateSubsection(
+      Object.assign({}, this.props.data, {
+        items: this.props.data.items.map(item => item.id === newItem.id ? newItem: item)
+      })
+    );
   }
 
   render() {
@@ -43,16 +49,21 @@ class SubSection extends React.Component {
       <div className="sub-section-content">
         <input 
           type="text"
-          value={this.state.data.title} 
+          value={this.props.data.title} 
           className='title'
-          onChange={(event) => this.titleChangeHandler(event)}
+          onChange={(event) => this.changeTitle(event)}
           placeholder="Subsection title" />
+        <i className="fa fa-trash"
+          title="Remove this subsection"
+          onClick={() => this.props.onRemoveSubsection()}></i>
         <div className="row">
           {
-            this.state.data.items.map(item => 
+            this.props.data.items.map(item => 
               <Item
                 data={item}
-                key={item.id} />
+                key={item.id} 
+                onRemoveItem={() => this.removeItem(item.id)} 
+                onUpdateItem={(item) => this.updateItem(item)} />
           )}
           <div className="col-2 flex">
             <button 

@@ -8,67 +8,65 @@ class Builder extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      sections: this.props.data
-    };
-
     this.addSection = this.addSection.bind(this);
-    this.getEmptySection = this.getEmptySection.bind(this);
+    this.removeSection = this.removeSection.bind(this);
+    this.updateSection = this.updateSection.bind(this);
+
     this.handleGistLoad = this.handleGistLoad.bind(this);
     this.handleGistSave = this.handleGistSave.bind(this);
   }
 
   addSection() {
-    const sections = this.state.sections.slice();
-
-    sections.push(this.getEmptySection());
-
-    this.setState({ 
-      sections: sections
-    });
-
-    this.props.onSectionChange(sections);
+    this.props.onSectionChange([
+      ...this.props.sections, {
+        id: uuid(),
+        title: '',
+        subSections: [{ id: uuid(), title: '', items: []}]
+      }
+    ]);
   }
 
-  getEmptySection() {
-    return {
-      id: uuid(),
-      title: '',
-      subSections: [{ id: uuid(), title: '', items: []}]
-    };
+  removeSection(id) {
+    this.props.onSectionChange(
+      this.props.sections.filter(section => section.id !== id)
+    );
+  }
+
+  updateSection(newSection) {
+    this.props.onSectionChange(
+      this.props.sections.map(section => section.id === newSection.id ? newSection : section)
+    );
   }
 
   handleGistLoad() {
     return loadGist()
       .then(response => {
         if(response) {
-          this.setState({
-            sections: response.data.layout
-          });
           this.props.onDataChange(response.data);
         }
       });
   }
 
   handleGistSave() {
-    const data = Object.assign(this.props.saveData, { layout: this.state.sections });
+    const data = Object.assign(this.props.saveData, { layout: this.props.sections });
     return saveGist({ data });
   }
   
   render() {
-
     return (
       <div className="container step-container animate">
         <TitleBarWithButtons 
           onLoadGist={() => this.handleGistLoad()}
           onSaveGist={() => this.handleGistSave()}
-          showSave={this.state.sections && this.state.sections.length > 0} 
+          showSave={this.props.sections && this.props.sections.length > 0} 
           title={'Step 1: Configure layout'} />
         <article>
-          { this.state.sections.map(item =>
-            <Section 
-              sectionData={item}
-              key={item.id} />
+          { this.props.sections.map(item =>
+              <Section 
+                data={item}
+                key={item.id}
+                onRemoveSection={() => this.removeSection(item.id)}
+                onUpdateSection={(section) => this.updateSection(section)} />
           )}
           <div className="button-container">
             <a 

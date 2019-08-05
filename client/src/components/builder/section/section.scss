@@ -6,6 +6,10 @@
   position: relative;
   @include depth-2;
 
+  &:first-child {
+    margin-top: 10px;
+  }
+
   input[type=text] {
     &.title {
       margin-bottom: 25px;
@@ -16,16 +20,19 @@
       box-sizing: border-box;
     }
 
-    + .fa-pencil {
+    + .fa {
       position: absolute;
-      color: $gray;
-      padding: 11px 12px;
-      left: 0;
+      color: $off-white;
+      background-color: $dark-red;
+      padding: 12px 14px 13px 14px;
+      cursor: pointer;
+      right: 0;
       top: 0;
+      border-top-right-radius: 4px;
       transition: .4s all;
     }
 
-    &:focus + .fa-pencil {
+    &:focus + .fa {
       color: $off-white;
     }
   }

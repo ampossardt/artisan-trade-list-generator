@@ -30,14 +30,7 @@ class App extends React.Component {
     };
 
     this.configureToast();
-    // Data change within the builder specifically
-    this.handleSectionChange = this.handleSectionChange.bind(this);
-    // Data change within the color selector specifically
-    this.handleColorChange = this.handleColorChange.bind(this);
-    // Data change within export step, specifically username field
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    // Data change across all steps, based on loading data from Gist
-    this.handleDataChange = this.handleDataChange.bind(this);
+
     this.getRoutedComponent = this.getRoutedComponent.bind(this);
     this.getBody = this.getBody.bind(this);
     this.handleHashChange = this.handleHashChange.bind(this);
@@ -50,44 +43,25 @@ class App extends React.Component {
     });
   }
 
-  handleSectionChange(layout) {
-    const newLayout = Object.assign({}, this.state.layout, { layout });
-    console.log(newLayout);
-    this.setState(newLayout);
-  }
-
-  handleColorChange(colors) {
-    const newColors = Object.assign({}, this.state.colors, colors);
-    this.setState({ colors: newColors });
-  }
-
-  handleUsernameChange(username) {
-    this.setState({ username });
-  }
-
-  handleDataChange(data) {
-    this.setState(data);
-  }
-
   getRoutedComponent() {
     switch(this.state.step) {
       case 1:
         return <Builder 
-          data={this.state.layout}
+          sections={this.state.layout}
           saveData={{ colors: this.state.colors, username: this.state.username }}
-          onSectionChange={(layout) => this.handleSectionChange(layout)}
-          onDataChange={(data) => this.handleDataChange(data)}
+          onSectionChange={ (layout) => this.setState({ layout }) }
+          onDataChange={ (data) => this.setState(data) }
         />;
       case 2:
         return <ColorSelection 
           data={this.state.colors}
           saveData={{ layout: this.state.layout, username: this.state.username }}
-          onColorChange={(colors) => this.handleColorChange(colors)}
-          onDataChange={(data) => this.handleDataChange(data)}
+          onColorChange={ (colors) => this.setState({ colors }) }
+          onDataChange={ (data) => this.setState(data) }
         />
       case 3:
         return <Export
-          onUsernameChange={(username) => this.handleUsernameChange(username)}
+          onUsernameChange={ (username) => this.setState({ username }) }
           saveData={{ layout: this.state.layout, colors: this.state.colors, username: this.state.username }}
           username={this.state.username} />
     }
