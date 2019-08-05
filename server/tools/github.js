@@ -142,25 +142,19 @@ module.exports.createBlob = (token, username, content) => {
 module.exports.commitFiles = (token, username, htmlSha, cssSha) => {
   return getReferenceToHead(token, username)
     .then(data => {
-      console.log('got reference to head');
       return getHeadCommit(data.object);
     })
     .then(headCommit => {
-      console.log('got reference to head commit');
       const headCommitSha = headCommit.sha;
 
       return getHeadCommitTree(headCommit.tree, token, username)
         .then(headCommitTree => {
-          console.log('got head commit tree')
           return createTree(headCommitTree.sha, token, username, htmlSha, cssSha);
         })
         .then(newTree => {
-          console.log('created new tree');
           return createCommit(newTree.sha, headCommitSha, token, username);
         })
         .then(newCommit => {
-          console.log(`created new commit with sha ${newCommit.sha}`);
-          console.log(JSON.stringify(newCommit));
           return updateHeadReference(newCommit.sha, token, username);
         })
         .then(headRef => {
@@ -169,7 +163,6 @@ module.exports.commitFiles = (token, username, htmlSha, cssSha) => {
     });
 }
 
-// object: { sha: '', url: '' }
 function getReferenceToHead(token, username) {
   return fetch(`${constants.githubApiBaseUrl}/repos/${username}/${username}.github.io/git/refs/heads/master`, {
       headers: {
@@ -179,19 +172,16 @@ function getReferenceToHead(token, username) {
     .then(res => processResponse(res));
 }
 
-// sha, tree: { url, sha }
 function getHeadCommit(object, token, username) {
   return fetch(object.url)
     .then(res => processResponse(res));
 }
 
-// sha
 function getHeadCommitTree(tree, token, username) {
   return fetch(tree.url)
     .then(res => processResponse(res));
 }
 
-// sha
 function createTree(baseTreeSha, token, username, htmlSha, cssSha) {
   return fetch(`${constants.githubApiBaseUrl}/repos/${username}/${username}.github.io/git/trees`, {
       method: 'POST',
@@ -220,7 +210,6 @@ function createTree(baseTreeSha, token, username, htmlSha, cssSha) {
     .then(res => processResponse(res));
 }
 
-// sha
 function createCommit(treeSha, parentCommitSha, token, username) {
   return fetch(`${constants.githubApiBaseUrl}/repos/${username}/${username}.github.io/git/commits`, {
       method: 'POST',
@@ -238,9 +227,6 @@ function createCommit(treeSha, parentCommitSha, token, username) {
 }
 
 function updateHeadReference(newCommitSha, token, username) {
-  console.log(JSON.stringify({
-    sha: newCommitSha
-  }));
   return fetch(`${constants.githubApiBaseUrl}/repos/${username}/${username}.github.io/git/refs/heads/master`, {
       method: 'PATCH',
       headers: {

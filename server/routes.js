@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const { constants } = require('./tools/constants.js');
-const { getGists, createGist, updateGist, getUser, getPublicRepositories, createRepo, getGistData, getLayoutGist, createBlob, commitFiles } = require('./tools/github.js');
+const Github = require('./tools/github.js');
 const { getHtml, getCss } = require('./tools/render');
 
 module.exports = (app) => {
@@ -29,7 +29,7 @@ module.exports = (app) => {
 
   // Gets user information about the currently logged-in user
   app.get('/user', (request, response) => {
-    getUser(request.headers.authorization)
+    Github.getUser(request.headers.authorization)
       .then(data => response.json(data));
   });
 
@@ -39,12 +39,12 @@ module.exports = (app) => {
     const escaped = JSON.stringify(data);
     const { authorization } = request.headers;
     
-    getGists(authorization, username)
+    Github.getGists(authorization, username)
         .then(gists => {
             const gist = gists.find(gist => gist.description === constants.gistDescription);
 
             if(!gist) {
-                createGist(authorization, escaped)
+                Github.createGist(authorization, escaped)
                     .then(data => {
                         response.sendStatus(201);
                     })
@@ -53,7 +53,7 @@ module.exports = (app) => {
                         response.sendStatus(500);
                     });
             } else {
-                updateGist(authorization, gist.id, escaped)
+                Github.updateGist(authorization, gist.id, escaped)
                     .then(data => {
                         response.sendStatus(200);
                     })
@@ -70,7 +70,7 @@ module.exports = (app) => {
     const { authorization } = request.headers;
     const { username } = request.query;
 
-    getGists(authorization, username)
+    Github.getGists(authorization, username)
         .then(gists => {
             const gist = gists.find(gist => gist.description === constants.gistDescription);
 
@@ -94,7 +94,7 @@ module.exports = (app) => {
     const { authorization } = request.headers;
     const { username } = request.query;
 
-    getPublicRepositories(authorization, username)
+    Github.getPublicRepositories(authorization, username)
         .then(repos => {
             const repo = repos.find(repo => repo.name === `${username}.github.io`);
 
@@ -112,7 +112,7 @@ module.exports = (app) => {
     const { authorization } = request.headers;
     const { username } = request.body;
 
-    createRepo(authorization, username)
+    Github.createRepo(authorization, username)
         .then(data => {
             if(data) {
                 return response.sendStatus(200);
@@ -130,13 +130,13 @@ module.exports = (app) => {
     const { username } = request.body;
     console.log(username);
 
-    getLayoutGist(authorization, username)
-        .then(gist => getGistData(gist.files['artisan-wants.json'].raw_url))
+    Github.getLayoutGist(authorization, username)
+        .then(gist => Github.getGistData(gist.files['artisan-wants.json'].raw_url))
         .then(data => { 
             return Promise.all([
-                createBlob(authorization, username, getHtml(username, data.username, data.layout)),
+                Github.createBlob(authorization, username, getHtml(username, data.username, data.layout)),
                 getCss(data.colors).then(css => {
-                    return createBlob(authorization, username, css);
+                    return Github.createBlob(authorization, username, css);
                 })
             ]);
         })
@@ -144,7 +144,7 @@ module.exports = (app) => {
             const htmlBlob = values[0];
             const cssBlob = values[1];
 
-            return commitFiles(authorization, username, htmlBlob.sha, cssBlob.sha)
+            return Github.commitFiles(authorization, username, htmlBlob.sha, cssBlob.sha)
                 .then(res => {
                     response.sendStatus(200);
                 });
