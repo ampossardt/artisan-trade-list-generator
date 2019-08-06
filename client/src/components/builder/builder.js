@@ -69,11 +69,11 @@ class Builder extends React.Component {
                 onUpdateSection={(section) => this.updateSection(section)} />
           )}
           <div className="button-container">
-            <a 
+            <button
               onClick={ () => this.addSection() }
               className="add-section">
               Add section...
-            </a>
+            </button>
           </div>
         </article>
         <StepBar

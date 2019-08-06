@@ -20,6 +20,7 @@ $dark-green: #27ae60;
 
 $red: #e74c3c;
 $dark-red: #c0392b;
+$darker-red: scale-color(#c0392b, $lightness: -10%);
 
 $turquoise: #1abc9c;
 $dark-turquoise: #16a085;

@@ -1,51 +1,57 @@
-.login-button {
-  padding: 12px 12px 12px 50px;
-  background-color: $github;
-  color: #fff;
-  text-align: center;
-  border-radius: 4px;
-  text-decoration: none;
-  display: inline-block;
-  position: relative;
-  opacity: 1;
-  transition: opacity .3s, background-color .3s;
-
-  &:visited, &:active {
-    text-decoration: none;
-    color: #fff;
-  }
-
-  &::before {
-    content:'';
-    background-image: url('/img/github-icon.png');
-    background-size: cover;
-    display: block;
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    top: 7px;
-    left: 15px;
-  }
-
-  &:hover {
-    background-color: $github-hover;
-  }
-}
 
 .user-info {
   margin: 0;
+  padding: 6px 20px;
+  position: relative;
+  background-color: rgba(255,255,255, .25);
+  transition: background-color .4s;
+  cursor: pointer;
 
-  img {
-    height: 40px;
-    width: 40px;
-    border-radius: 50px;
-    margin-right: 10px;
-    border: 4px solid $github;
+  &:hover {
+    background-color: rgba(255,255,255, .32);
   }
 
-  .name {
-    p {
-      margin-bottom: 5px;
+  &.active {
+    background-color: rgba(255,255,255, .85);
+
+    .fa, p {
+      color: $dark-blue;
+    }
+  }
+
+  .image {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    border-radius: 50px;
+    margin-left: 10px;
+    border: 4px solid $github;
+    background-size: cover;
+
+    &.loading {
+      background-image: none !important;
+      border: none;
+      height: 48px;
+      width: 48px;
+      animation: .5s pulse infinite ease-in-out;
+    }
+  }
+
+  .fa {
+    margin-right: 10px;
+  }
+
+  p {
+    margin-bottom: 0;
+
+    &.placeholder {
+      &::after {
+        content: '';
+        display:block;
+        height: 19px;
+        width: 120px;
+        animation: .5s pulse infinite ease-in-out;
+      }
     }
   }
 
@@ -61,16 +67,40 @@
       margin-right: 4px;
     }
   }
+
+  .menu {
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    background-color: rgba(255,255,255, .6);
+    border-radius: 0 0 4px 4px;
+    left: 0;
+    top: 100%;
+    @include depth-2;
+
+    button {
+      width: 100%;
+      background-color: $red;
+      transition: background-color .4s;
+      color: $off-white;
+
+      &:hover {
+        background-color: $dark-red;
+      }
+    }
+
+    &.open {
+      height: auto;
+    }
+  }
 }
 
-.loader {
-  height: 58px;
-  width: 350px;
-  text-align: center;
-
-  .fa-spinner {
-    animation: spin 1s linear infinite;
-    font-size: 1.5em;
-    margin-top: 15px;
+@keyframes pulse {
+  0% {
+    background-color: $gray;
+  }
+  100% {
+    background-color: $off-white;
   }
 }

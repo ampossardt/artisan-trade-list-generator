@@ -47,47 +47,16 @@ class LoggedIn extends React.Component {
 
     this.state = {
       data: {},
-      loading: true
+      loading: true,
+      menuOpen: false
     };
-
-    this.getComponent = this.getComponent.bind(this);
   }
 
   componentDidMount() {
     getUserInfo().then(data => {
-      console.log(data);
       this.setState({ data, loading: false });
       window.localStorage.setItem('username', data.login);
     });
-  }
-
-  getComponent() {
-    const { avatar_url, email, login } = this.state.data;
-
-    return this.state.loading ?
-      <div className="loader"><i className="fa fa-spinner"></i></div> :
-      <figure className="user-info flex vertical-center">
-        <img src={avatar_url} />
-        <div className="name">
-          <p>{login}</p>
-          <p>{email}</p>
-        </div>
-        <LogOutButton />
-      </figure>; 
-  }
-
-  render() {
-    return(
-      this.getComponent()
-    );
-  }
-}
-
-class LogOutButton extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.logout = this.logout.bind(this);
   }
 
   logout() {
@@ -97,11 +66,26 @@ class LogOutButton extends React.Component {
   }
 
   render() {
+    const { avatar_url, login } = this.state.data;
+
     return (
-      <span className="title"
-        onClick={() => this.logout() }>
-        <i className="fa fa-sign-out"></i> Log out
-      </span>
+      <figure 
+        className={`user-info flex vertical-center ${this.state.menuOpen && 'active'}`}
+        onClick={() => this.setState({ menuOpen: !this.state.menuOpen })}>
+        { !this.state.loading && <i className={`fa ${this.state.menuOpen ? 'fa-chevron-up': 'fa-chevron-down'}`}></i> }
+        <div className="name">
+          <p className={this.state.loading ? 'placeholder': ''}>
+            { !this.state.loading && login }
+          </p>
+        </div>
+        <div 
+          className={`image ${this.state.loading ? 'loading': ''}`} 
+          style={{backgroundImage: `url('${avatar_url}')`}}>
+        </div>
+        <div className={`menu ${this.state.menuOpen && 'open'}`}>
+          <button onClick={() => this.logout()}>Log out</button>
+        </div>
+      </figure>
     );
   }
 }

@@ -51,10 +51,13 @@ class Item extends React.Component {
             onChange={ (event) => this.updateName(event) }
             placeholder="Name"
             autoComplete="off" />
+          <i className="fa fa-trash"
+            title="Remove this item"
+            onClick={() => this.props.onRemoveItem()}></i>
           <input 
             type="file" 
             onChange={ (event) => this.readFileUrl(event) } />
-          <img className="preview" src={this.props.data.imageUrl} />
+          <img className="preview" alt="" src={this.props.data.imageUrl} />
         </div>
       </div>
     );

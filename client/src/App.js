@@ -2,7 +2,7 @@ import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
-import SignInOAuth, { LoggedIn } from './components/login/oauth';
+import SignInOAuth from './components/login/oauth';
 import Builder from './components/builder/builder';
 import SignInTools from './tools/sign-in-tools';
 import Instructions from './components/instructions/instructions';
@@ -64,6 +64,8 @@ class App extends React.Component {
           onUsernameChange={ (username) => this.setState({ username }) }
           saveData={{ layout: this.state.layout, colors: this.state.colors, username: this.state.username }}
           username={this.state.username} />
+      default:
+        return null;
     }
   }
 

@@ -8,16 +8,24 @@
   background-color: $off-white;
   border-radius: 6px;
   padding-bottom: 10px;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
 
   input[type=text] {
     border-radius: 6px 6px 0 0;
     display: block;
     margin-bottom: 5px;
-    width: 100%;
+    width: calc(100% - 40px);
     border-bottom: 1px solid $silver;
     box-sizing: border-box;
     color: black;
     text-align: center;
+
+    + .fa {
+      background-color: $off-white;
+      border-bottom: 1px solid $silver;
+    }
 
     &:focus {
       background-color: $silver;

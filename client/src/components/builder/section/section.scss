@@ -22,18 +22,15 @@
 
     + .fa {
       position: absolute;
-      color: $off-white;
-      background-color: $dark-red;
-      padding: 12px 14px 13px 14px;
+      color: $dark-red;
+      background-color: rgba(255,255,255, .3);
+      padding: 11px 14px 12px 14px;
       cursor: pointer;
+      font-size: 18px;
       right: 0;
       top: 0;
       border-top-right-radius: 4px;
       transition: .4s all;
-    }
-
-    &:focus + .fa {
-      color: $off-white;
     }
   }
   

@@ -81,7 +81,7 @@ class ProgressTracker extends React.Component {
           <span className={`icon ${this.state.icon}`}></span>
           <h3>{this.state.status}</h3>
         </figure>
-        <p className={this.state.showLink ? 'show': ''}><a target="_blank" href={`https://${SignInTools.GetUsername()}.github.io`}>View your wants list</a></p>
+        <p className={this.state.showLink ? 'show': ''}><a target="_blank" rel="noopener noreferrer" href={`https://${SignInTools.GetUsername()}.github.io`}>View your wants list</a></p>
       </div>
     );
   }

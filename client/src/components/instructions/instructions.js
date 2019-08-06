@@ -22,12 +22,12 @@ class Instructions extends React.Component {
           <div className="login-item existing">
             <a href={url} className="flex vertical-center"><span>Log in via GitHub</span></a>
           </div>
-          <span class="create-account">No account? <a href="#">Create one</a></span>
+          <span class="create-account">No account? <a href="https://github.com/join" target="_blank" rel="noopener noreferrer">Create one</a></span>
         </div>
         <h1 className="label">What is this?</h1>
         <div className="section">
           <p>Tired of using Google Docs as a way to manage the list of artisans you are looking for? Wishing there was a more mobile-friendly way to display said list? Use my site to generate a nicely-formatted, mobile-friendly list of artisans with the colors of your choice!</p>
-          <p><br/><a className="button turquoise" target="_blank" href="https://github.com/ampossardt/artisan-trade-list-generator">See the full README on GitHub</a></p>
+          <p><br/><a className="button turquoise" target="_blank" rel="noopener noreferrer" href="https://github.com/ampossardt/artisan-trade-list-generator">See the full README on GitHub</a></p>
         </div>
         <h1 className="label">How do I use it?</h1>
         <div className="section">
