@@ -18,6 +18,8 @@
   border-radius: 6px;
   padding: 5px;
   width: 80%;
+  
+  .preview-content { transition: .4s all; }
 
   main {
     width: 70%;
@@ -31,8 +33,8 @@
 
   h2 {
     padding: 10px 0;
-    margin-bottom: 8px;
     color: black;
+    margin-bottom: 8px;
   }
 
   h3 {
@@ -43,6 +45,7 @@
 
   h1, h2, h3, p {
     text-align: center;
+    transition: .4s all;
   }
 
   p {
