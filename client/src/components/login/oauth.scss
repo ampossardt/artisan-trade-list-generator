@@ -24,7 +24,6 @@
     width: 40px;
     display: inline-block;
     border-radius: 50px;
-    margin-left: 10px;
     border: 4px solid $github;
     background-size: cover;
 
@@ -37,12 +36,8 @@
     }
   }
 
-  .fa {
-    margin-right: 10px;
-  }
-
   p {
-    margin-bottom: 0;
+    margin: 0 12px 0 15px;
 
     &.placeholder {
       &::after {

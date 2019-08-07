@@ -3,7 +3,6 @@ import SignInTools from './sign-in-tools';
 
 export function saveGist(data) {
   data.username = SignInTools.GetUsername();
-  console.log(data);
   
   return fetch(`${constants.apiBaseUrl}/gist`, {
     method: 'PUT',

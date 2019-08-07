@@ -56,8 +56,8 @@ class ColorSelection extends React.Component {
           title={'Step 2: Select colors'} />
         <article>
           <section>
-            <div className="flex vertical-center">
-              <div className="col-4">
+            <div className="flex">
+              <div className="section-title">
                 <h2 className="label">Background</h2>
               </div>
               <ColorSelectionItem 
@@ -67,8 +67,8 @@ class ColorSelection extends React.Component {
             </div>
           </section>
           <section>
-            <div className="flex vertical-center">
-              <div className="col-4">
+            <div className="flex">
+              <div className="section-title">
                 <h2 className="label">Title</h2>
               </div>
               <ColorSelectionItem 
@@ -82,8 +82,8 @@ class ColorSelection extends React.Component {
             </div>
           </section>
           <section>
-            <div className="flex vertical-center">
-              <div className="col-4">
+            <div className="flex">
+              <div className="section-title">
                 <h2 className="label">Subtitle</h2>
               </div>
               <ColorSelectionItem 
@@ -97,8 +97,8 @@ class ColorSelection extends React.Component {
             </div>
           </section>
           <section>
-            <div className="flex vertical-center">
-              <div className="col-4">
+            <div className="flex">
+              <div className="section-title">
                 <h2 className="label">Items</h2>
               </div>
               <ColorSelectionItem 
@@ -191,7 +191,7 @@ class ColorSelectionDropdown extends React.Component {
 
 function ColorSelectionItem(props) {
   return(
-    <div className="col-4">
+    <div className="col-4 grow flex vertical-center">
       <ColorSelectionDropdown 
         selected={props.selected}
         onColorChange={(color) => props.onColorChange(color)} /><h3>{props.title}</h3>

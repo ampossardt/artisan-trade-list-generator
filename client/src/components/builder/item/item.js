@@ -21,8 +21,8 @@ class Item extends React.Component {
     const file = event.target.files[0];
 
     if(file) {
-      if(file.size / 1000 > 60) {
-        toast(`Maximum file size is 60kb. The image you tried to add was ${file.size / 1000}kb.`, {
+      if(file.size / 1000 > 80) {
+        toast(`Maximum file size is 80kb. The image you tried to add was ${file.size / 1000}kb.`, {
           type: 'error'
         });
 

@@ -134,7 +134,7 @@ module.exports = (app) => {
         .then(gist => Github.getGistData(gist.files['artisan-wants.json'].raw_url))
         .then(data => { 
             return Promise.all([
-                Github.createBlob(authorization, username, getHtml(username, data.username, data.layout)),
+                Github.createBlob(authorization, username, getHtml(data.username, data.layout)),
                 getCss(data.colors).then(css => {
                     return Github.createBlob(authorization, username, css);
                 })

@@ -11,6 +11,22 @@ section {
     line-height: 30px;
     vertical-align: top;
   }
+
+  .section-title {
+    flex: 0 0 200px;
+  }
+
+  &:first-child {
+    margin-top: 10px;
+  }
+}
+
+.color-selection {
+  section {
+    .col-4 {
+      padding: 0;
+    }
+  }
 }
 
 .color-select {

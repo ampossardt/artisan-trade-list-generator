@@ -19,6 +19,7 @@ COPY package.json .
 RUN npm install
 
 COPY index.js .
+COPY routes.js .
 COPY assets/ assets/
 COPY tools/ tools/
 

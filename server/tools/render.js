@@ -1,9 +1,9 @@
 const pug = require('pug');
 const fs = require('fs');
 
-module.exports.getHtml = (username, redditUsername, sections) => {
+module.exports.getHtml = (redditUsername, sections) => {
   const html = pug.renderFile('assets/template.pug', {
-    username, sections
+    redditUsername, sections
   });
 
   return html;

@@ -47,7 +47,6 @@ class ProgressTracker extends React.Component {
   checkRepoStep() {
     return checkRepository()
       .then(data => {
-        console.log(data);
         if(data.exists) {
           this.setState({ status: 'Uploading files to GitHub...' });
           return this.uploadFilesStep();

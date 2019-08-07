@@ -50,6 +50,8 @@ class LoggedIn extends React.Component {
       loading: true,
       menuOpen: false
     };
+
+    this.registerClickListener();
   }
 
   componentDidMount() {
@@ -63,6 +65,12 @@ class LoggedIn extends React.Component {
     window.localStorage.clear();
     window.location.hash = '';
     window.location.reload();
+  }
+
+  registerClickListener() {
+    document.addEventListener('click', () => {
+      this.setState({ menuOpen: false });
+    });
   }
 
   render() {

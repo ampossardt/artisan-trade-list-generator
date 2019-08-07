@@ -53,16 +53,17 @@ The source code for this application is available publicly at [`https://github.c
 
 GitHub recognizes when new files are sent to this specifically-named repository, but it still needs to do some work to make it accessible. You should generally see changes within 30 seconds of either creating a brand-new site, or making edits and redeploying to your existing site.
 
-### 60kb max file size for images? What gives?
+### 80kb max file size for images? What gives?
 
 Images you add during the creation process are read as `Data URIs`, which is basically a textual-representation of the image. I'd like to keep file sizes reasonable when uploading all of this data to GitHub. If you disagree, or can think of a legitimate reason to increase the size limit, I am open to suggestions and you are free to [file an issue](https://github.com/ampossardt/artisan-trade-list-generator/issues) on the official repository.
 
-I recommend keeping your images to a max size of 400px by 400px (width is most important here).
+I recommend keeping your images to a max width of 400px, which should allow them to still look clear but meet the minimum requirements for the column size.
 
 If decreasing the size is still not enough, there are a number of resources for 'minifying' images via compression:
 
 * PNG - [https://tinypng.com](https://tinypng.com)
 * JPG - [https://tinyjpg.com](https://tinyjpg.com)
+* Resizing - [https://bulkresizephotos.com/en](https://bulkresizephotos.com/en) - This resource also includes a slider under 'advanced options' to change the JPEG quality, which should allow you to do all images in one go
 
 A potential future improvement I can see being popular would be to implement this directly into image upload so that the user experience is seamless and doesn't require 'prepping' images for the site. If you'd like to see this feature, please go to the Github repository [issues section](https://github.com/ampossardt/artisan-trade-list-generator/issues) and either open an issue or vote on an existing issue.
 
